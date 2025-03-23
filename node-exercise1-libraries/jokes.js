@@ -49,7 +49,7 @@ const listJokes = () => {
 const readJoke = (name) => {
     const jokes = loadJokes()
 
-    const jokeToRead = jokes.find((joke) => joke.name === name)
+    const jokeToRead = jokes.find((joke) => joke.name.toLowerCase() === name)
 
     if(jokeToRead) {
         console.log(chalk.cyan.underline(jokeToRead.name))
@@ -62,7 +62,7 @@ const readJoke = (name) => {
 const addId = (name) => {
     const jokes = loadJokes()
 
-    const writerToAddId = jokes.find((joke) => joke.name === name)
+    const writerToAddId = jokes.find((joke) => joke.nametoLowerCase() === name)
 
     if(writerToAddId) {
         if (!writerToAddId.id) {
@@ -93,9 +93,9 @@ const loadJokes = () => {
 }
 
 module.exports = {
-    addJoke: addJoke,
-    removeJoke: removeJoke,
-    listJokes: listJokes,
-    readJoke: readJoke,
-    addId: addId
+    addJoke,
+    removeJoke,
+    listJokes,
+    readJoke,
+    addId
 }
