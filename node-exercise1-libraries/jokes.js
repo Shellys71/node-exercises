@@ -62,7 +62,7 @@ const readJoke = (name) => {
 const addId = (name) => {
     const jokes = loadJokes()
 
-    const writerToAddId = jokes.find((joke) => joke.nametoLowerCase() === name)
+    const writerToAddId = jokes.find((joke) => joke.name.toLowerCase() === name)
 
     if(writerToAddId) {
         if (!writerToAddId.id) {
