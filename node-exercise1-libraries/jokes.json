@@ -15,5 +15,16 @@
         "name": "Mable Tyler",
         "age": 27,
         "joke": "Every machine in the coin factory broke down all of a sudden without explanation. It just doesn’t make any cents."
+    },
+    {
+        "name": "Clarence Patrick",
+        "age": 41,
+        "joke": "Pie is $2.50 in Jamaica and $3.00 in The Bahamas. These are the pie-rates of the Caribbean.",
+        "id": "829958576"
+    },
+    {
+        "name": "Marcus Johnston",
+        "age": 50,
+        "joke": "Why don't sharks eat clowns?  Because they taste funny."
     }
 ]

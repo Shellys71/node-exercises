@@ -6,7 +6,7 @@ const chance = require('chance').Chance()
 const addJoke = () => {
     const jokes = loadJokes()
     
-    giveMeAJoke.getRandomDadJoke (function(joke) {         
+    giveMeAJoke.getRandomDadJoke ((joke) => {         
 
         const duplicteJoke = jokes.find((joke) => joke.joke === joke)
 
@@ -19,7 +19,7 @@ const addJoke = () => {
             saveJokes(jokes)
             console.log(chalk.green.inverse('New joke added!'))
         } else {
-            console.log(chalk.red.inverse('Joke taken!'))
+            console.log(chalk.red.inverse('Joke taken! Try again!'))
         }
     });
 }
@@ -67,11 +67,10 @@ const addId = (name) => {
     if(writerToAddId) {
         if (!writerToAddId.id) {
             writerToAddId.id = chance.ssn({ dashes: false })
-            console.log(writerToAddId)
             saveJokes(jokes)
             console.log(chalk.green.inverse('Id added!'))
         } else {
-            console.log(chalk.green.inverse('This writer already has id!'))
+            console.log(chalk.red.inverse('This writer already has id!'))
         }
     } else {
         console.log(chalk.red.inverse('No writer found!'))
