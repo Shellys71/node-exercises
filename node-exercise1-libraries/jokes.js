@@ -14,7 +14,7 @@ const addJoke = () => {
             jokes.push ({
                 name: chance.name(),
                 age: chance.age(),
-                joke: joke
+                joke
             })
             saveJokes(jokes)
             console.log(chalk.green.inverse('New joke added!'))
