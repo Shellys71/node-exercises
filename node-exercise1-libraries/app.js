@@ -1,17 +1,17 @@
-const yargs = require('yargs')
-const jokes = require('./jokes.js')
+const yargs = require('yargs');
+const jokes = require('./jokes.js');
 
 // Costumize yargs version
-yargs.version('1.1.0')
+yargs.version('1.1.0');
 
 // Add command
 yargs.command({
     command: 'add',
     describe: 'Add a new joke',
     handler() {
-        jokes.addJoke()
+        jokes.addJoke();
     }
-})
+});
 
 // Remove command
 yargs.command({
@@ -25,18 +25,18 @@ yargs.command({
         }
     },
     handler(argv) {
-        jokes.removeJoke(argv.name)
+        jokes.removeJoke(argv.name);
     }
-})
+});
 
 // List command
 yargs.command({
     command: 'list',
     describe: 'List the jokes',
     handler() {
-        jokes.listJokes()
+        jokes.listJokes();
     }
-})
+});
 
 // Read command
 yargs.command({
@@ -50,9 +50,9 @@ yargs.command({
         }
     },
     handler(argv) {
-        jokes.readJoke(argv.name)
+        jokes.readJoke(argv.name);
     }
-})
+});
 
 // Add id command
 yargs.command({
@@ -66,10 +66,10 @@ yargs.command({
         }
     },
     handler(argv) {
-        jokes.addId(argv.name)
+        jokes.addId(argv.name);
     }
-})
+});
 
 
-yargs.parse()
+yargs.parse();
 
