@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Dictionary</title>
+    <link rel="icon" href="/img/dictionary.png">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <div class="main-content">
+        {{>header}}
+
+        <p class="to-trans">Use this site to get definision to any word!</p>
+
+        <form>
+            <input placeholder="Word">
+            <button>Search</button>
+        </form>
+
+        <button id="rnd-btn">Random Word!</button>
+
+        <p class="to-trans" id="message-1"></p>
+        <p class="to-trans" id="message-2"></p>
+    </div>
+
+    {{>footer}}
+    <script src="/js/app.js"></script>
+</body>
+
+</html>
