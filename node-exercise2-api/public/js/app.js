@@ -15,7 +15,7 @@ dictionaryForm.addEventListener('submit', (e) => {
     fetch('http://localhost:4000/dictionary?word=' + word).then((response) => {
         response.json().then((data) => {
             if (data.error) {
-                messageOne.textContent = data.error;
+                selectedWord.textContent = data.error;
             } else {
                 if (word !== '') {
                     selectedWord.textContent = data.word;
@@ -34,7 +34,7 @@ rndBtn.addEventListener('click', () => {
     fetch('https://random-word-api.vercel.app/api').then((response) => {
         response.json().then((rndWord) => {
             if (rndWord.error) {
-                messageOne.textContent = rndWord.error;
+                selectedWord.textContent = rndWord.error;
             } else {
                 search.value = rndWord;
             }
@@ -48,7 +48,7 @@ const translateAll = () => {
         fetch('https://api.funtranslations.com/translate/minion.json?text=' + text.innerText).then((response) => {
             response.json().then((data) => {
                 if (data.error) {
-                    messageOne.textContent = data.error;
+                    selectedWord.textContent = data.error;
                 } else {
                     text.innerText = data.contents.translated;
                 }
