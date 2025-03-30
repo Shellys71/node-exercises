@@ -17,10 +17,14 @@ dictionaryForm.addEventListener('submit', (e) => {
             if (data.error) {
                 messageOne.textContent = data.error;
             } else {
-                messageOne.textContent = data.word;
-                messageTwo.textContent = data.defenition;  
-                messageTwo.innerHTML += '<br/><button id="translate-btn">I want to translate all the page</button>';
-                document.querySelector('#translate-btn').addEventListener('click', translateAll);
+                if (word !== '') {
+                    messageOne.textContent = data.word;
+                    messageTwo.textContent = data.defenition;  
+                    messageTwo.innerHTML += '<br/><button id="translate-btn">I want to translate all the page</button>';
+                    document.querySelector('#translate-btn').addEventListener('click', translateAll);
+                } else {
+                    messageOne.textContent = 'Insert a word please!';
+                }
             }
         });
     })
