@@ -1,7 +1,7 @@
 const dictionaryForm = document.querySelector('form');
 const search = document.querySelector('input');
-const messageOne = document.querySelector('#message-1');
-const messageTwo = document.querySelector('#message-2');
+const selectedWord = document.querySelector('#message-1');
+const translatedWord = document.querySelector('#message-2');
 const rndBtn = document.querySelector('#rnd-btn');
 
 dictionaryForm.addEventListener('submit', (e) => {
@@ -9,8 +9,8 @@ dictionaryForm.addEventListener('submit', (e) => {
 
     const word = search.value;
 
-    messageOne.textContent = 'Loading...';
-    messageTwo.textContent = '';
+    selectedWord.textContent = 'Loading...';
+    translatedWord.textContent = '';
 
     fetch('http://localhost:4000/dictionary?word=' + word).then((response) => {
         response.json().then((data) => {
@@ -18,12 +18,12 @@ dictionaryForm.addEventListener('submit', (e) => {
                 messageOne.textContent = data.error;
             } else {
                 if (word !== '') {
-                    messageOne.textContent = data.word;
-                    messageTwo.textContent = data.defenition;  
-                    messageTwo.innerHTML += '<br/><button id="translate-btn">I want to translate all the page</button>';
+                    selectedWord.textContent = data.word;
+                    translatedWord.textContent = data.defenition;  
+                    translatedWord.innerHTML += '<br/><button id="translate-btn">I want to translate all the page</button>';
                     document.querySelector('#translate-btn').addEventListener('click', translateAll);
                 } else {
-                    messageOne.textContent = 'Insert a word please!';
+                    selectedWord.textContent = 'Insert a word please!';
                 }
             }
         });
@@ -43,7 +43,7 @@ rndBtn.addEventListener('click', () => {
 });
 
 const translateAll = () => { 
-    const textToTranslate = document.querySelectorAll('.to-trans');
+    const textToTranslate = document.querySelectorAll('.to-translate');
     textToTranslate.forEach(text => {
         fetch('https://api.funtranslations.com/translate/minion.json?text=' + text.innerText).then((response) => {
             response.json().then((data) => {

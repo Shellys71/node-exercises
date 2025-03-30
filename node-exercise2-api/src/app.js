@@ -27,7 +27,7 @@ app.get('', (req, res) => {
 app.get('/dictionary', (req, res) => {
     if(!req.query.word) {
         return res.send({
-            arror: 'You must provide a word!'
+            error: 'You must provide a word!'
         });
     }
 
