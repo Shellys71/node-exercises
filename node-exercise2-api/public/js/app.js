@@ -27,6 +27,8 @@ dictionaryForm.addEventListener('submit', (e) => {
                 }
             }
         });
+    }).catch(() => {
+        selectedWord.textContent = "Couldn't access dictionary";
     })
 });
 
@@ -53,6 +55,8 @@ const translateAll = () => {
                     text.innerText = data.contents.translated;
                 }
             });
+        }).catch(() => {
+            selectedWord.textContent = "Couldn't translte your texts!";
         })
     });
 }
