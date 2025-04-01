@@ -49,7 +49,7 @@ const listJokes = () => {
 const readJoke = (name) => {
     const jokes = loadJokes();
 
-    const jokeToRead = jokes.find((joke) => joke.name.toLowerCase() === name);
+    const jokeToRead = jokes.find((joke) => joke.name.toLowerCase() === name.toLowerCase());
 
     if(jokeToRead) {
         console.log(chalk.cyan.underline(jokeToRead.name));
@@ -62,7 +62,7 @@ const readJoke = (name) => {
 const addId = (name) => {
     const jokes = loadJokes();
 
-    const writerToAddId = jokes.find((joke) => joke.name.toLowerCase() === name)
+    const writerToAddId = jokes.find((joke) => joke.name.toLowerCase() === name.toLowerCase())
 
     if(writerToAddId) {
         if (!writerToAddId.id) {
