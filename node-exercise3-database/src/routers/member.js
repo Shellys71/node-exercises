@@ -1,5 +1,6 @@
 const express = require("express");
 const Member = require("../models/member");
+const Team = require("../models/team");
 const router = new express.Router();
 
 router.post('/members', async (req, res) => {
@@ -57,6 +58,32 @@ router.patch('/members/:id', async (req, res) => {
         res.send(member);
     } catch (e) {
         res.status(400).send();
+    }
+});
+
+router.delete('/members/:id', async (req, res) => {
+    const _id = req.params.id;
+
+    try {
+        const member = await Member.findByIdAndDelete(_id);
+        let index;
+        const teams = await Team.find({});
+        const team = teams.find((team) => {
+            index = team.members.findIndex((member) => member === _id);
+            if (index >= 0) {
+                return true;
+            }
+            return false;
+        });
+        if (team) {    
+            const updatedMembers = team.members;
+            updatedMembers.splice(index, 1);
+            await Team.updateOne({ _id: team.id }, { members: updatedMembers }, { new: true, runValidators: true });
+        }
+
+        res.send(`The member ${member.name} was deleted successfully!`);
+    } catch (e) {
+        res.status(500).send();
     }
 });
 

@@ -74,4 +74,53 @@ router.delete('/teams/:id', async (req, res) => {
     }
 });
 
+router.get('/teams/leader/:name', async (req, res) => {
+    const name = req.params.name;
+
+    try {
+        const team = await Team.findOne({name});
+
+        if (!team) {
+            return res.status(404).send();
+        }
+
+        res.send(`The leader of team ${name} is ${team.leader}`);
+    } catch (e) {
+        res.status(500).send();
+    }
+});
+
+router.get('/teams/team/:id', async (req, res) => {
+    const _id = req.params.id;
+
+    try {
+        const teams = await Team.find({});
+        const team = teams.find((team) => team.members.includes(_id));
+
+        if (!team) {
+            return res.status(404).send();
+        }
+
+        res.send(`This member is in team ${team.name}`);
+    } catch (e) {
+        res.status(500).send();
+    }
+});
+
+router.get('/teams/members/:id', async (req, res) => {
+    const _id = req.params.id;
+
+    try {
+        const team = await Team.findById(_id);
+
+        if (!team) {
+            return res.status(404).send();
+        }
+
+        res.send(`This team includes ${team.members.length} members`);
+    } catch (e) {
+        res.status(500).send();
+    }
+});
+
 module.exports = router;
