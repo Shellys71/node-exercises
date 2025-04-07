@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
+// const Member = require("./member");
 
-const Team = mongoose.model('Team', {
+const teamSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -8,13 +9,16 @@ const Team = mongoose.model('Team', {
     },
     leader: {
         type: String,
-        required: true,
-        trim: true
-    },
-    members: {
-        type: [String],
-        default: []
+        required: true
     }
 });
+
+teamSchema.virtual("members", {
+    ref: "Member",
+    localField: "_id",
+    foreignField: "team"
+});
+
+const Team = mongoose.model('Team', teamSchema);
 
 module.exports = Team;

@@ -1,5 +1,6 @@
 const express = require("express");
 const Team = require("../models/team");
+const auth = require("../middleware/auth");
 const router = new express.Router();
 
 router.post('/teams', async (req, res) => {
