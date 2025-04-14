@@ -37,6 +37,10 @@ const memberSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Team"
     },
+    pazam: {
+        type: Number,
+        default: 0
+    },
     tokens: [{
         token: {
             type: String,
