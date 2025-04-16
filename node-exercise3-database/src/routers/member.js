@@ -58,18 +58,16 @@ router.get('/members/leaders', auth, async (req, res) => {
     }
 
 try {
+    let leaders = [];
     const teams = await Team.find().sort(sort);
-    teams.forEach((team) => {
-        team.populate("members");
-    })
-    // await req.member.length.populate({
-    //     path: "members",
-    //     options: {
-    //         sort
-    //     }
-    // });
-    // res.send(req.member.members);
+    teams.forEach(async (team) => {
+        await team.populate("members");
+        leaders = team.members.filter((member) => member.isLeader);
+        leaders.push(leaders);
+    });
+    res.send(leaders);
 } catch (e) {
+    console.log(e);
     res.status(500).send();
 }
 });
