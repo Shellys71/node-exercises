@@ -54,7 +54,7 @@ router.get('/members/leaders', auth, async (req, res) => {
 
     if (req.query.sortBy) {
         const parts = req.query.sortBy.split(':');
-        sort[parts[0]] = parts[1] === "desc" ? -1 : 1;
+        sort[parts[0]] = parts[1];
     }
 
 try {
@@ -81,12 +81,15 @@ router.get('/members', auth, async (req, res) => {
 
     if (req.query.sortBy) {
         const parts = req.query.sortBy.split(':');
-        sort[parts[0]] = parts[1] === "desc" ? -1 : 1;
+        sort[parts[0]] = parts[1];
     }
 
     try {
-        const members = await Member.find(match).sort(sort).limit(req.query.limit).skip(req.query.skip);
-        res.send(members);
+        const members = await Member.find(match)
+                                    .sort(sort)
+                                    .limit(req.query.limit)
+                                    .skip(req.query.skip);
+                                    res.send(members);
     } catch (e) {
         res.status(codes.INTERNAL_SERVER_ERROR).send();
     }
